@@ -7,27 +7,27 @@ variable "do_token" {
 variable "droplet_image" {
   type        = string
   description = "A imagem do OS para o Droplet (slug)."
-  default = "ubuntu-24-04-x64" 
+  default     = "ubuntu-24-04-x64"
 }
 
 variable "droplet_name" {
   type        = string
   description = "O hostname do Droplet."
-  default = "vm-labs"
+  default     = "vm-labs"
   #default = "ubuntu-s-1vcpu-512mb-10gb-nyc3-01" 
 }
 
 variable "droplet_region" {
   type        = string
   description = "A região do Datacenter."
-  default = "nyc3" 
+  default     = "nyc3"
 }
 
 variable "droplet_size" {
   type        = string
   description = "O slug do tamanho/plano do Droplet."
   # Plano de $4/mês (1vCPU, 512MB RAM, 10GB SSD)
-  default = "s-1vcpu-512mb-10gb" 
+  default = "s-1vcpu-512mb-10gb"
 }
 
 variable "do_project_name" {
