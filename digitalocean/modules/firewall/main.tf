@@ -1,5 +1,5 @@
-resource "digitalocean_firewall" "firewall_labs" {
-  name = "firewall-labs"
+resource "digitalocean_firewall" "this" {
+  name = "firewall-${var.droplet_id}"
 
   droplet_ids = [var.droplet_id]
 

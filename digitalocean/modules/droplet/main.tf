@@ -4,5 +4,5 @@ resource "digitalocean_droplet" "this" {
   name     = var.name
   region   = var.region
   size     = var.size
-  tags     = ["lab", "droplet-managed-by-terraform"]
+  tags     = ["droplet-dev", "droplet-managed-by-terraform"]
 }

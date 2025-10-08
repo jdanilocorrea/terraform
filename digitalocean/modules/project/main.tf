@@ -8,12 +8,12 @@ resource "digitalocean_project_resources" "this" {
 #   project = data.digitalocean_project.selected.id
 
 #   resources = [
-#     digitalocean_droplet.vm_labs.urn,
-#     # digitalocean_firewall.firewall_labs.urn
+#     digitalocean_droplet.this.urn,
+#     digitalocean_firewall.this.urn
 #   ]
 
 #   depends_on = [
-#     digitalocean_droplet.vm_labs,
-#     # digitalocean_firewall.firewall_labs
+#     digitalocean_droplet.this,
+#     digitalocean_firewall.this
 #   ]
 # }

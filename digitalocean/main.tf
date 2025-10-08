@@ -1,26 +1,19 @@
 
-module "droplet" {
-  source = "./modules/droplet"
-  name = var.droplet_name
-  image = var.droplet_image
-  region = var.droplet_region
-  size = var.droplet_size
-  ssh_key_id = data.digitalocean_ssh_key.ssh_key.id
-  }
-
-module "firewall" {
-  source     = "./modules/firewall"
-  droplet_id = module.droplet.vm_id
+locals {
+  name_prefix = "${var.name}-cluster"
 }
-
-module "project" {
-  source       = "./modules/project"
-  project_id  = data.digitalocean_project.selected.id
-  resource_urns = [module.droplet.vm_urn]
-  # project_name = var.do_project_name
-  # resources = [
-  #   module.droplet.vm_urn,
-  #   module.firewall.firewall_urn
-  # ]
+module "vpc" {
+  source   = "./modules/vpc"
+  name     = "${local.name_prefix}-vpc"
+  region   = var.region
+  vpc_cidr = var.vpc_cidr
 }
-
+module "k8s" {
+  source             = "./modules/doks"
+  name               = "${local.name_prefix}-cluster"
+  region             = var.region
+  vpc_uuid           = module.vpc.vpc_id
+  kubernetes_version = var.kubernetes_version # substitua pela versão desejada
+  tags               = ["${var.project_name}", "k8s"]
+  node_pools         = var.node_pools
+}

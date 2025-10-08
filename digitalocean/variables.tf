@@ -1,44 +1,65 @@
-variable "do_token" {
+variable "name" {
   type        = string
-  description = "Token da API da Digital Ocean"
+  description = "Nome do cluster Kubernetes na DigitalOcean. Use um nome curto e descritivo (ex: 'prod-cluster')."
+}
+
+variable "region" {
+  type        = string
+  description = "Região da DigitalOcean onde o cluster será criado (ex: 'nyc3', 'sfo3')."
+}
+
+variable "vpc_uuid" {
+  type        = string
+  description = "UUID da VPC existente onde o cluster será provisionado. Use 'terraform output' do módulo de VPC para obter este valor."
+}
+
+variable "kubernetes_version" {
+  type        = string
+  description = "Versão do Kubernetes a ser usada no cluster (ex: '1.30.1-do.0'). Pode ser consultada com 'doctl kubernetes options versions'."
+}
+
+variable "tags" {
+  type        = list(string)
+  description = "Lista de tags aplicadas ao cluster para fins de organização, billing e automação."
+  default     = []
+}
+
+
+variable "project_name" {
+  description = "Nome do projeto/stack"
+  type        = string
+  default     = "do-k8s-project"
+}
+variable "vpc_cidr" {
+  description = "CIDR para VPC do DO"
+  type        = string
+  default     = "10.10.0.0/16"
+}
+# -----------------------------
+variable "node_pools" {
+  description = "Lista de node pools com configuração. Exemplo: [{name='pool-1', size='s-2vcpu-4gb', count=3, tags=['app']}]"
+  type = list(object({
+    name  = string
+    size  = string
+    count = number
+    tags  = optional(list(string), [])
+  }))
+  default = [
+    {
+      name  = "default-pool"
+      size  = "s-2vcpu-4gb"
+      count = 3
+      tags  = ["worker"]
+    }
+  ]
+}
+
+variable "do_token" {
+  description = "DigitalOcean API token. NÃO comite este token - use secrets / env vars / terraform cloud"
+  type        = string
   sensitive   = true
 }
 
-variable "droplet_image" {
-  type        = string
-  description = "A imagem do OS para o Droplet (slug)."
-  default     = "ubuntu-24-04-x64"
-}
 
-variable "droplet_name" {
-  type        = string
-  description = "O hostname do Droplet."
-  default     = "vm-labs"
-  #default = "ubuntu-s-1vcpu-512mb-10gb-nyc3-01" 
-}
 
-variable "droplet_region" {
-  type        = string
-  description = "A região do Datacenter."
-  default     = "nyc3"
-}
 
-variable "droplet_size" {
-  type        = string
-  description = "O slug do tamanho/plano do Droplet."
-  # Plano de $4/mês (1vCPU, 512MB RAM, 10GB SSD)
-  default = "s-1vcpu-512mb-10gb"
-}
-
-variable "do_project_name" {
-  type        = string
-  description = "Nome do projeto DigitalOcean para associar o Droplet."
-  # Projeto selecionado na tela "Finalize Details"
-  default = "jdct-k8s-labs" # cd795063-fc66-44bb-b58b-de6b7af77537
-}
-
-variable "ssh_key_name" {
-  type        = string
-  description = "Nome da chave SSH registrada na DigitalOcean (fingerprint ou nome)."
-  default     = "jdcor-phn16"
-}
