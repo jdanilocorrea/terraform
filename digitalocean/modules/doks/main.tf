@@ -1,14 +1,13 @@
-# terraform {
-#   required_version = ">= 1.6.0"
+terraform {
+  required_version = ">= 1.6.0"
 
-#   required_providers {
-#     digitalocean = {
-#       source  = "digitalocean/digitalocean"
-#       version = "~> 2.0"
-#     }
-#   }
-# }
-
+  required_providers {
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.0"
+    }
+  }
+}
 resource "digitalocean_kubernetes_cluster" "this" {
   name     = var.name
   region   = var.region

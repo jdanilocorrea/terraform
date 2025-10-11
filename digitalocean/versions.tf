@@ -6,23 +6,9 @@ terraform {
       source  = "digitalocean/digitalocean"
       version = "~> 2.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
+    }
   }
 }
-
-provider "digitalocean" {
-  token = var.do_token
-}
-
-
-# Optional: provider alias for operations em outra conta/region
-# provider "digitalocean" {
-#   alias = "secondary"
-#   token = var.do_token_secondary
-# }
-
-# Recomendo usar Terraform Cloud / Enterprise para state remoto:
-# backend "remote" {
-#   hostname = "app.terraform.io"
-#   organization = "sua-org"
-#   workspaces { name = "do-k8s" }
-# }
