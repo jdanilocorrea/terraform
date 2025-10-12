@@ -1,5 +1,5 @@
 resource "digitalocean_project_resources" "this" {
-  project = var.project_id
+  project   = var.project_id
   resources = var.resource_urns
 }
 

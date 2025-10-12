@@ -9,7 +9,7 @@ terraform {
   }
 }
 resource "digitalocean_kubernetes_cluster" "this" {
-  name     = var.name
+  name     = var.name_cluster
   region   = var.region
   version  = var.kubernetes_version
   vpc_uuid = var.vpc_uuid
@@ -44,7 +44,7 @@ data "digitalocean_kubernetes_cluster" "this_data" {
 }
 
 resource "local_file" "kubeconfig" {
-  content         = data.digitalocean_kubernetes_cluster.this_data.kube_config[0].raw_kube_config
+  content         = data.digitalocean_kubernetes_cluster.this_data.kube_config[0].raw_config
   filename        = "${path.module}/kubeconfig.yaml"
   file_permission = "0600"
 }

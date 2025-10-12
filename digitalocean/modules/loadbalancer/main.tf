@@ -3,16 +3,16 @@ resource "digitalocean_loadbalancer" "this" {
   region = var.region
 
   forwarding_rule {
-    entry_port     = 80
-    entry_protocol = "http"
-    target_port    = 80
+    entry_port      = 80
+    entry_protocol  = "http"
+    target_port     = 80
     target_protocol = "http"
   }
 
   healthcheck {
-    protocol = "http"
-    port     = 80
-    path     = "/healthz"
+    protocol               = "http"
+    port                   = 80
+    path                   = "/healthz"
     check_interval_seconds = 10
   }
 

@@ -1,4 +1,4 @@
-variable "name" {
+variable "name_cluster" {
   type        = string
   description = "Nome do cluster Kubernetes na DigitalOcean. Use um nome curto e descritivo (ex: 'prod-cluster')."
 }
