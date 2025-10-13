@@ -4,7 +4,6 @@
 locals {
   name_prefix = "${var.name_cluster}-cluster"
 }
-
 ##########################################
 # VPC
 ##########################################
@@ -24,6 +23,22 @@ module "k8s" {
   region             = var.region
   vpc_uuid           = module.vpc.vpc_id
   kubernetes_version = var.kubernetes_version
-  tags               = ["${var.project_name}", "k8s"]
+  tags               = ["${var.do_project_name}", "k8s"]
   node_pools         = var.node_pools
+  depends_on         = [module.vpc]
+}
+
+##########################################
+# Project (associação)
+##########################################
+module "project" {
+
+  source       = "./modules/project"
+  project_id   = data.digitalocean_project.selected.id
+  project_name = var.do_project_name
+  resource_urns = [
+    module.k8s.cluster_urn
+  ]
+
+  depends_on = [module.k8s]
 }

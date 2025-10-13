@@ -10,7 +10,7 @@ terraform-digitalocean-k8s/
 │ │ ├─ main.tf  
 │ │ ├─ variables.tf  
 │ │ └─ outputs.tf  
-│ ├─ k8s-cluster/  
+│ ├─ k8s/  
 │ │ ├─ main.tf  
 │ │ ├─ variables.tf  
 │ │ └─ outputs.tf  

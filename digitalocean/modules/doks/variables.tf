@@ -24,3 +24,4 @@ variable "default_node_pool_count" {
   type    = number
   default = 1
 }
+

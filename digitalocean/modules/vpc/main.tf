@@ -15,10 +15,4 @@ resource "digitalocean_vpc" "this" {
   description = "VPC for ${var.name}"
 }
 
-output "vpc_id" {
-  value = digitalocean_vpc.this.id
-}
 
-output "vpc_uuid" {
-  value = digitalocean_vpc.this.id
-}

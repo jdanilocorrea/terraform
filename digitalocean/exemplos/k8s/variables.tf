@@ -25,7 +25,7 @@ variable "tags" {
 }
 
 
-variable "project_name" {
+variable "do_project_name" {
   description = "Nome do projeto/stack"
   type        = string
   default     = "do-k8s-project"
@@ -47,7 +47,7 @@ variable "node_pools" {
   default = [
     {
       name  = "default-pool"
-      size  = "s-2vcpu-4gb"
+      size  = "s-1vcpu-4gb"
       count = 3
       tags  = ["worker"]
     }
