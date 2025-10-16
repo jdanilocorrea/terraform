@@ -22,6 +22,6 @@ variable "default_node_pool_size" {
 }
 variable "default_node_pool_count" {
   type    = number
-  default = 1
+  default = 0
 }
 
