@@ -9,11 +9,12 @@
 `terraform validate`
 
 # 3. Planeja
-terraform plan -var-file="terraform.tfvars" -out=tfplan
+`terraform plan -var-file="terraform.tfvars" -out=tfplan`
 
 # 4. Aplica
-terraform apply tfplan
+`terraform apply tfplan`
 
 # 5. Exporta kubeconfig (exemplo DigitalOcean)
 export KUBECONFIG=./modules/doks/kubeconfig.yaml
-kubectl get nodes
+
+`kubectl get nodes`
