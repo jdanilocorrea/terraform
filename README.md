@@ -1,9 +1,11 @@
 # 1. Limpa cache e inicializa
-rm -rf .terraform .terraform.lock.hcl
-terraform init -upgrade -reconfigure
+'rm -rf .terraform .terraform.lock.hcl'
+
+'terraform init -upgrade -reconfigure'
 
 # 2. Formata e valida
 terraform fmt -recursive
+
 terraform validate
 
 # 3. Planeja
