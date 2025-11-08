@@ -1,7 +1,7 @@
 # 1. Limpa cache e inicializa
-'rm -rf .terraform .terraform.lock.hcl'
+'''rm -rf .terraform .terraform.lock.hcl'''
 
-'terraform init -upgrade -reconfigure'
+'''terraform init -upgrade -reconfigure'''
 
 # 2. Formata e valida
 terraform fmt -recursive
